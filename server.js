@@ -12,7 +12,7 @@ app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
 // Mount middleware (app.use)
-
+app.use(express.urlencoded({extended: true}));
 
 
 // Dummy Code For now...#################
@@ -49,7 +49,16 @@ Update
 /*
 Create
 */
+app.post('/logs', (req, res) => {
+  if(req.body.shipIsBroken === 'on'){
+    req.body.shipIsBroken = true;
+  } else {
+    req.body.shipIsBroken = false;
+  }
+  console.log("req.body: ", req.body);
+res.send(req.body);
 
+})
 
 
 
