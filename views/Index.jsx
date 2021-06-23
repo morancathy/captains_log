@@ -13,13 +13,18 @@ class Index extends React.Component{
             this.props.logs.map((logs) => {
               return(
                 <li>
-                  Log Title:  <a href={`/logs/${logs._id}`}>{logs.title}</a>.  Ship status:
+                  Log Title:  <a href={`/logs/${logs._id}`}>{logs.title}</a>.
+                  Ship status:
                   {
                     logs.shipIsBroken?
                     '  Good to go!':
                     '  BROKEN!!!!'
                   }
+                  <form action={`/logs/${logs._id}?_method=DELETE`} method="POST">
+                    <input type="submit" value="DELETE"/>
+                  </form>
                 </li>
+
               )
             })
           }

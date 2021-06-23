@@ -26,6 +26,8 @@ app.engine('jsx', require('express-react-views').createEngine());
 // Mount middleware (app.use)
 app.use(express.urlencoded({extended: true}));
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 // Dummy Code For now...#################
 
@@ -84,7 +86,17 @@ app.get('/logs/new', (req, res) => {
 /*
 Delete
 */
-
+app.delete('/logs/:id', (req, res) => {
+  Log.findByIdAndDelete(req.params.id, (err, foundLog)=>{
+    if(err){
+      res.status(404).send({
+          msg: err.message
+      })
+    } else {
+      res.redirect('/logs')
+    }
+  })
+});
 /*
 Update
 */
