@@ -29,10 +29,6 @@ app.use(express.urlencoded({extended: true}));
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
-// Dummy Code For now...#################
-
-//END DUMMY CODE #######################
-
 // Seed Route
 app.get('/logs/seed', (req, res) => {
   Log.create([
@@ -75,7 +71,6 @@ app.get('/logs', (req, res) => {
   })
 })
 
-
 /*
 New
 */
@@ -100,7 +95,25 @@ app.delete('/logs/:id', (req, res) => {
 /*
 Update
 */
+app.put('/logs/:id', (req, res) => {
+  if(req.body.shipIsBroken === 'on'){
+    req.body.shipIsBroken = true;
+  } else{
+    req.body.shipIsBroken = false;
+  }
 
+  Log.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedLog)=>{
+    if(err){
+      res.status(404).send({
+          msg: err.message
+      })
+    } else {
+      res.render('Show', {
+        logs: updatedLog,
+      })
+    }
+  })
+});
 
 /*
 Create
@@ -141,7 +154,6 @@ app.get('/logs/:id/edit', (req, res) => {
   })
 });
 
-
 /*
 Show
 */
@@ -158,7 +170,6 @@ app.get('/logs/:id', (req, res) => {
     }
   })
 });
-
 
 //tell app to listen on port 3000 for HTTP requests from clients
 app.listen(PORT, () => {
