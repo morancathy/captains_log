@@ -10,10 +10,10 @@ class Index extends React.Component{
         </nav>
         <ul>
           {
-            this.props.logs.map((logs, i) => {
+            this.props.logs.map((logs) => {
               return(
                 <li>
-                  Log Title:  <a href={`/logs/${i}`}>{logs.title}</a>.  Ship status:
+                  Log Title:  <a href={`/logs/${logs._id}`}>{logs.title}</a>.  Ship status:
                   {
                     logs.shipIsBroken?
                     '  Good to go!':

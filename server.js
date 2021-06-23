@@ -40,8 +40,8 @@ app.get('/logs/seed', (req, res) => {
       shipIsBroken: false
     },
     {
-      title: 'this is a title',
-      entry: 'this is entry',
+      title: 'this is another title',
+      entry: 'this is anoter entry',
       shipIsBroken: false
     }
   ], (err, data) => {
@@ -56,7 +56,7 @@ INDUCES Routes
 Index
 */
 app.get('/', (req, res) => {
-  res.send("Welcome to the Captains Log")
+  res.send('<h1>Welcome to the Captains Log App!</h1><a href="/logs/">Visit Captain Logs</a>')
 })
 
 app.get('/logs', (req, res) => {
@@ -93,19 +93,19 @@ Update
 /*
 Create
 */
-app.post('/logs', (req, res) => {
+app.post('/logs/', (req, res) => {
   if(req.body.shipIsBroken === 'on'){
     req.body.shipIsBroken = true;
   } else {
     req.body.shipIsBroken = false;
   }
 
-  Log.create(req.body, (err, createdLog) =>{
+  Log.create(req.body, (err, createdLog) => {
     if(err){
       res.status(404).send({
         msg: err.message
       })
-    } else{
+    } else {
       console.log("req.body: ", req.body)
       res.redirect('/logs');
     }
@@ -121,6 +121,20 @@ Edit
 /*
 Show
 */
+app.get('/logs/:id', (req, res) => {
+  Log.findById(req.params.id, (err, foundLog)=>{
+    if(err){
+      res.status(404).send({
+          msg: err.message
+      })
+    } else {
+      res.render('Show', {
+        logs: foundLog,
+      })
+    }
+  })
+});
+
 
 //tell app to listen on port 3000 for HTTP requests from clients
 app.listen(PORT, () => {
