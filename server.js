@@ -32,6 +32,22 @@ app.use(express.urlencoded({extended: true}));
 //END DUMMY CODE #######################
 
 // Seed Route
+app.get('/logs/seed', (req, res) => {
+  Log.create([
+    {
+      title: 'this is a title',
+      entry: 'this is entry',
+      shipIsBroken: false
+    },
+    {
+      title: 'this is a title',
+      entry: 'this is entry',
+      shipIsBroken: false
+    }
+  ], (err, data) => {
+      res.redirect('/logs');
+  });
+});
 
 /****************************************
 INDUCES Routes
@@ -42,6 +58,9 @@ Index
 app.get('/', (req, res) => {
   res.send("Welcome to the Captains Log")
 })
+
+
+
 /*
 New
 */
