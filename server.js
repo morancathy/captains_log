@@ -127,7 +127,19 @@ app.post('/logs/', (req, res) => {
 /*
 Edit
 */
-
+app.get('/logs/:id/edit', (req, res) => {
+  Log.findById(req.params.id, (err, foundLog)=>{
+    if(err){
+      res.status(404).send({
+          msg: err.message
+      })
+    } else {
+      res.render('Edit', {
+        logs: foundLog,
+      })
+    }
+  })
+});
 
 
 /*
