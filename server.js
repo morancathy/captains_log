@@ -1,11 +1,23 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const Log = require('./models/logs.js')
 
 /****************************************
  Database set up
 ****************************************/
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
+mongoose.connection.once('open', () => {
+  console.log('connected to mongo');
+});
 
 // Configure the app (app.set)
 app.set('view engine', 'jsx');
@@ -55,12 +67,18 @@ app.post('/logs', (req, res) => {
   } else {
     req.body.shipIsBroken = false;
   }
-  console.log("req.body: ", req.body);
-res.send(req.body);
 
-})
-
-
+  Log.create(req.body, (err, createdLog) =>{
+    if(err){
+      res.status(404).send({
+        msg: err.message
+      })
+    } else{
+      console.log("req.body: ", req.body)
+      res.redirect('/log');
+    }
+  })
+});
 
 /*
 Edit
