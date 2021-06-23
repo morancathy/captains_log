@@ -27,12 +27,12 @@ INDUCES Routes
 /*
 Index
 */
-
+app.get('/', (req, res) => {
+  res.send("Welcome to the Captains Log")
+})
 /*
 New
 */
-
-
 app.get('/logs/new', (req, res) => {
   res.render('New')
 })
@@ -49,6 +49,9 @@ Update
 /*
 Create
 */
+
+
+
 
 /*
 Edit
