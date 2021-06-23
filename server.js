@@ -59,6 +59,19 @@ app.get('/', (req, res) => {
   res.send("Welcome to the Captains Log")
 })
 
+app.get('/logs', (req, res) => {
+  Log.find({}, (err, foundLogs) => {
+    if(err){
+      res.status(404).send({
+        msg: err.message
+      })
+    } else {
+      res.render('Index', {
+        logs: foundLogs
+      })
+    }
+  })
+})
 
 
 /*
@@ -94,7 +107,7 @@ app.post('/logs', (req, res) => {
       })
     } else{
       console.log("req.body: ", req.body)
-      res.redirect('/log');
+      res.redirect('/logs');
     }
   })
 });
