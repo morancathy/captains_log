@@ -1,14 +1,13 @@
 const React = require('react');
 
-class New extends React.Component{
+class FoodNew extends React.Component{
   render() {
     return(
       <div>
-        <h1>New Log</h1>
-        <form action="/logs" method="POST">
-          Title: <input type="text" name="title" /><br/>
+        <h1>New Food Log</h1>
+        <form action="/foodlog" method="POST">
+          Meal: <input type="text" name="meal" /><br/>
           Entry: <input type="text" name="entry" /><br/>
-          Ship is Broken: <input type="checkbox" name="shipIsBroken" /><br/>
           Created At: <input type="date" name="date" /><br/>
           <input type="submit" name="" value="Submit Log" /><br/>
         </form>
@@ -17,4 +16,4 @@ class New extends React.Component{
   }
 }
 
-module.exports = New;
+module.exports = FoodNew;

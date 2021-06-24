@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const Log = require('./models/logs.js')
+const Log = require('./models/logs.js');
+
 
 /****************************************
  Database set up
@@ -25,6 +26,8 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 // Mount middleware (app.use)
 app.use(express.urlencoded({extended: true}));
+app.use('/', require('./food.js'))   //for food
+
 
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
