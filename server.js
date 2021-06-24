@@ -31,6 +31,7 @@ app.use('/', require('./food.js'))   //for food
 
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 // Seed Route
 app.get('/logs/seed', (req, res) => {
