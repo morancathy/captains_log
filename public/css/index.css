@@ -1,0 +1,30 @@
+
+body {
+  background-color: #B9D9EB;
+}
+
+#createLink {
+  color: green;
+}
+
+#foodLink {
+  margin-left: 65px;
+  color: green;
+}
+
+li {
+  font-size: 20px;
+  color: black;
+  padding-bottom: 10px;
+}
+
+#date {
+  margin-top: 2px;
+  font-size: 16px;
+}
+
+#editLink {
+  margin-top: -12px;
+  font-style: italic;
+  font-size: 15px;
+}

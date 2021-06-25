@@ -1,7 +1,7 @@
 const React = require('react');
 const DefaultLayout = require('./layouts/Default');
 
-class Show extends React.Component {
+class CommentNew extends React.Component {
   render() {
     const loggy = this.props.logs;
     return(
@@ -16,10 +16,18 @@ class Show extends React.Component {
           '  Good to go!'
         }</p>
         {`${loggy.createdAt}`}<br/><br/>
-        <a id="backLink" href="/logs">Back to log entries</a>  <a id="commentLink" href={`/logs/${loggy._id}/comment`}>Make a Comment</a>
+
+        <form action="/logs" method="POST">
+        <h4>Name:</h4>
+          <input type="text" name="name" /><br/>
+        <h4>Entry:</h4>
+          <input type="textarea" name="entry" /><br/>
+        <h4>Date</h4><input type="date" name="date" /><br/>
+        <input type="submit" name="" value="Submit Comment" /><br/>
+        </form>
       </DefaultLayout>
     )
   }
 }
 
-module.exports = Show;
+module.exports = CommentNew;

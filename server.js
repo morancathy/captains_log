@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const Log = require('./models/logs.js');
-
+const Comment = require('./models/comments.js');
 
 /****************************************
  Database set up
@@ -28,9 +28,9 @@ app.engine('jsx', require('express-react-views').createEngine());
 app.use(express.urlencoded({extended: true}));
 app.use('/', require('./food.js'))   //for food
 
-
 const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
+
 app.use(express.static('public'));
 
 // Seed Route
@@ -81,6 +81,23 @@ New
 app.get('/logs/new', (req, res) => {
   res.render('New')
 })
+
+app.get('/logs/:id/comment', (req, res) => {
+  Log.findById(req.params.id, (err, foundLogs)=>{
+    if(err){
+      res.status(404).send({
+          msg: err.message
+      })
+    } else {
+      res.render('CommentNew', {
+        logs: foundLogs
+      })
+    }
+  })
+});
+
+
+
 
 /*
 Delete
@@ -141,6 +158,19 @@ app.post('/logs/', (req, res) => {
   })
 });
 
+app.post('logs/:id/comment', (req, res) => {
+  Comment.create(req.body, (err, createdComment) => {
+    if(err){
+      res.status(404).send({
+        msg: err.message
+      })
+    } else {
+      console.log("req.body: ", req.body)
+      res.redirect('/logs');
+    }
+  })
+});
+
 /*
 Edit
 */
@@ -174,6 +204,20 @@ app.get('/logs/:id', (req, res) => {
     }
   })
 });
+
+// app.get('/logs/:id/comment', (req, res) => {
+//   Log.findById(req.params.id, (err, foundLogs)=>{
+//     if(err){
+//       res.status(404).send({
+//           msg: err.message
+//       })
+//     } else {
+//       res.render('CommentNew', {
+//         logs: foundLogs
+//       })
+//     }
+//   })
+// });
 
 //tell app to listen on port 3000 for HTTP requests from clients
 app.listen(PORT, () => {

@@ -1,0 +1,12 @@
+div{
+  background-color: #ffb6c1;
+  text-align: center;
+  margin: 20px;
+  padding: 15px;
+  padding-bottom: 25px;
+  border: solid yellow;
+}
+
+p {
+  font-size: 22px;
+}

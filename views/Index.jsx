@@ -1,43 +1,20 @@
 const React = require('react');
-
-//CSS Styling#######################
-const divStyle = {
-color: '#ffffff',
-backgroundColor: '#00BFFF',
-margin: '20px',
-padding: '15px'
-};
-
-const liStyle = {
-  fontSize: '20px',
-  color: 'black',
-  paddingBottom: '10px'
-};
-const pStyle = {
-  marginTop: '2px',
-  fontSize: '16px',
-};
-const aStyle = {
-  marginTop: '-12px',
-  fontStyle: 'italic',
-  fontSize: '15px',
-};
-//###############################
+const DefaultLayout = require('./layouts/Default');
 
 class Index extends React.Component{
   render(){
-
     return(
-      <div style={divStyle}>
-        <h1>Captain's Log Index</h1>
+      <DefaultLayout
+      title={"Captain's Log Index"}
+      styles={[{key: 0, href: '/css/app.css'}, { key: 1, href: '/css/index.css'}]}>
         <nav>
-          <a href="/logs/new">Create a New Log</a>
+          <a id="createLink" href="/logs/new">Create a New Log</a><a id="foodLink" href="/foodlog">Visit Food Log</a>
         </nav>
         <ul>
           {
             this.props.logs.map((logs) => {
               return(
-                <li style={liStyle}>
+                <li>
                   <strong>Title:</strong>  <a href={`/logs/${logs._id}`}>{logs.title}</a>.
                   Ship status:
                   {
@@ -45,17 +22,16 @@ class Index extends React.Component{
                     '  BROKEN!!!!':
                     '  Good to go!'
                   }
-                  <p style={pStyle}>Date: {`${logs.createdAt}`}</p>
-                  <p style={aStyle}>
+                  <p id="date">Date: {`${logs.createdAt}`}</p>
+                  <p id="editLink">
                     <a href={`/logs/${logs._id}/edit`}>Edit log</a>
                   </p>
                 </li>
-
               )
             })
           }
         </ul>
-      </div>
+      </DefaultLayout>
     )
   }
 }

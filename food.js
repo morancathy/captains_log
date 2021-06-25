@@ -1,5 +1,9 @@
 const router = require('express').Router();
 const FoodLog = require('./models/foodlog.js');
+
+const methodOverride = require('method-override');
+router.use(methodOverride('_method'));
+
 // Seed Route
 router.get('/foodlog/seed', (req, res) => {
   FoodLog.create([

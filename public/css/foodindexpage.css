@@ -1,0 +1,28 @@
+
+#edit {
+  font-style: italic;
+  font-size: 15px;
+}
+
+#mealLog {
+  color: green;
+}
+
+#logLink {
+  margin-left: 65px;
+  color: green;
+}
+
+p {
+  margin-bottom: 1px;
+  margin-top: 5px;
+  font-size: 17px;
+}
+
+#mealP {
+    margin-bottom: 7px;
+}
+
+li {
+  padding-bottom: 10px;
+};

@@ -1,0 +1,21 @@
+div {
+color: #ffffff;
+background-color: #FF69B4;
+text-align: center;
+margin: 20px;
+width: auto;
+padding: 15px;
+border: solid yellow;
+}
+
+p {
+  font-size: 22px;
+}
+
+#backLink {
+
+}
+
+#commentLink {
+  padding-left: 300px;
+}
