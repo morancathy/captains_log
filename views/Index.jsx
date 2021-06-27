@@ -8,7 +8,7 @@ class Index extends React.Component{
       title={"Captain's Log Index"}
       styles={[{key: 0, href: '/css/app.css'}, { key: 1, href: '/css/index.css'}]}>
         <nav>
-          <a id="createLink" href="/logs/new">Create a New Log</a><a id="foodLink" href="/foodlog">Visit Food Log</a>
+          <a id="createLink" href="/logs/newlog">Create a New Log</a><a id="foodLink" href="/foodlog">Visit Food Log</a>
         </nav>
         <ul>
           {

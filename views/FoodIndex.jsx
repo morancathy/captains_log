@@ -2,7 +2,7 @@ const React = require('react');
 const DefaultLayout = require('./layouts/Default');
 
 class FoodIndex extends React.Component{
-  render(){
+  render(){  
     return(
       <DefaultLayout
       title={"Captain's Food Log Index"}

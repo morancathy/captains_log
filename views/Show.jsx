@@ -16,7 +16,8 @@ class Show extends React.Component {
           '  Good to go!'
         }</p>
         {`${loggy.createdAt}`}<br/><br/>
-        <a id="backLink" href="/logs">Back to log entries</a>  <a id="commentLink" href={`/logs/${loggy._id}/comment`}>Make a Comment</a>
+        <p>{loggy.peoplesComments}</p>
+        <a id="backLink" href="/logs">Back to log entries</a>  {/*<a id="commentLink" href={`/logs/${loggy._id}/comment`}>Make a Comment</a>*/}
       </DefaultLayout>
     )
   }
